@@ -3,8 +3,7 @@
   "name": "kitedb",
   "compatibility_date": "2025-09-01",
   "assets": {
-    "directory": "./site",
-    "not_found_handling": "single-page-application"
+    "directory": "./site"
   },
   "routes": [
     { "pattern": "kitedb.dotly.mn", "custom_domain": true }
