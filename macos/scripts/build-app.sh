@@ -80,7 +80,7 @@ plutil -replace LSMinimumSystemVersion -string "$MIN_OS" "$APP/Contents/Info.pli
 # License texts of the bundled libraries.
 LICENSES="$APP/Contents/Resources/Licenses"
 mkdir -p "$LICENSES"
-cp LICENSE "$LICENSES/KitelabDB-LICENSE.txt"
+cp ../LICENSE "$LICENSES/KitelabDB-LICENSE.txt"
 cp THIRD_PARTY_NOTICES.md "$LICENSES/"
 for formula in libpq mysql-client mysql openssl@3 krb5 zstd zlib-ng-compat zlib; do
     prefix="$(brew --prefix "$formula" 2>/dev/null)" || continue

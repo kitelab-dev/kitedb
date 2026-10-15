@@ -21,6 +21,9 @@ jobs:
       TAG: ${{ inputs.tag || github.ref_name }}
       MYSQL_PREFIX: /opt/homebrew/opt/mysql-client
       LIBPQ_PREFIX: /opt/homebrew/opt/libpq
+    defaults:
+      run:
+        working-directory: macos
     steps:
       - uses: actions/checkout@v5
 
@@ -44,6 +47,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" --title "Kitelab DB ${TAG#v}" --notes-file .github/release-notes.md --generate-notes
+            gh release create "$TAG" --title "Kitelab DB ${TAG#v}" --notes-file ../.github/release-notes.md --generate-notes
           fi
           gh release upload "$TAG" build/KitelabDB.dmg build/KitelabDB.dmg.sha256 --clobber
