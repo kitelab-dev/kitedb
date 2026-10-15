@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag to (re)build, e.g. v1.0.0
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    # Homebrew bottles built for macOS 14 keep the bundled client libraries
+    # (and therefore the app) runnable on macOS 14 and later.
+    runs-on: macos-14
+    env:
+      TAG: ${{ inputs.tag || github.ref_name }}
+      MYSQL_PREFIX: /opt/homebrew/opt/mysql-client
+      LIBPQ_PREFIX: /opt/homebrew/opt/libpq
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 16
+        run: |
+          sudo xcode-select -s "$(ls -d /Applications/Xcode_16*.app | sort -V | tail -1)"
+          swift --version
+
+      - name: Install client libraries
+        run: brew install libpq mysql-client
+
+      - name: Build app and disk image
+        run: |
+          export VERSION="${TAG#v}"
+          ./scripts/build-app.sh
+          ./scripts/make-dmg.sh
+          plutil -p "build/Kitelab DB.app/Contents/Info.plist" | grep -E "Version|Minimum"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "Kitelab DB ${TAG#v}" --notes-file .github/release-notes.md --generate-notes
+          fi
+          gh release upload "$TAG" build/KitelabDB.dmg build/KitelabDB.dmg.sha256 --clobber
