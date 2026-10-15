@@ -43,6 +43,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 struct AppCommands: Commands {
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.openURL) private var openURL
 
     var body: some Commands {
         CommandGroup(replacing: .newItem) {
@@ -50,6 +51,12 @@ struct AppCommands: Commands {
                 openWindow(id: WindowID.welcome)
             }
             .keyboardShortcut("k", modifiers: [.command, .shift])
+        }
+        CommandGroup(replacing: .help) {
+            Button("Kitelab DB Website") { openURL(AppLinks.website) }
+            Button("Report an Issue…") { openURL(AppLinks.issues) }
+            Divider()
+            Button("Donate via Byl…") { openURL(AppLinks.donate) }
         }
     }
 }

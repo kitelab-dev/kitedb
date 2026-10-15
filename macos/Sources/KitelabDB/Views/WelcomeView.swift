@@ -72,7 +72,13 @@ struct WelcomeView: View {
             }
             .controlSize(.large)
             .keyboardShortcut("n")
-            Text("Version 1.0")
+            Link(destination: AppLinks.donate) {
+                Label("Support Kitelab DB", systemImage: "heart.fill")
+                    .font(.callout)
+            }
+            .tint(.pink)
+            .help("Donate via Byl")
+            Text("Version \(appVersion)")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
                 .padding(.bottom, 16)
@@ -80,6 +86,10 @@ struct WelcomeView: View {
         .padding(.horizontal, 24)
         .frame(width: 250)
         .background(.background.secondary)
+    }
+
+    private var appVersion: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "dev"
     }
 
     private var connectionList: some View {

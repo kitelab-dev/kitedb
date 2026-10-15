@@ -28,6 +28,7 @@
   --code-text: #e6edf3;
   --shadow: 0 30px 70px -20px rgba(16, 32, 64, .28), 0 0 0 1px rgba(16, 32, 64, .06);
   --kite: #ffbf33;
+  --donate: #e0356b;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -229,6 +230,24 @@ kbd {
   background: color-mix(in srgb, var(--kite) 12%, transparent); border: 1px solid color-mix(in srgb, var(--kite) 35%, transparent);
 }
 
+.nav-donate { display: inline-flex; align-items: center; gap: 6px; color: var(--donate) !important; font-weight: 600; }
+.nav-donate svg { width: 14px; height: 14px; }
+.support-card {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px 36px;
+}
+.support-card .heart {
+  width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--donate) 14%, transparent); color: var(--donate);
+}
+.support-card .heart svg { width: 28px; height: 28px; }
+.support-card h2 { font-size: clamp(22px, 3vw, 28px); margin-bottom: 6px; }
+.support-card p { margin: 0; color: var(--muted); }
+.btn-donate {
+  background: var(--donate); color: #fff;
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--donate) 80%, transparent);
+}
+.btn-donate svg { width: 16px; height: 16px; }
 .final { text-align: center; }
 footer { border-top: 1px solid var(--border); padding: 30px 0 40px; color: var(--faint); font-size: 14px; }
 footer .wrap { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
@@ -236,6 +255,7 @@ footer .links { margin-left: auto; display: flex; gap: 18px; }
 footer a { color: var(--muted); }
 
 @media (max-width: 900px) {
+  .support-card { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 28px 22px; }
   .features { grid-template-columns: repeat(2, 1fr); }
   .shortcuts { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr; }
@@ -246,6 +266,7 @@ footer a { color: var(--muted); }
 @media (max-width: 600px) {
   .wrap { padding: 0 16px; }
   .nav-links a { display: none; }
+  .nav-links a.nav-donate { display: inline-flex; }
   .features, .shortcuts { grid-template-columns: 1fr; }
   .hero { padding-top: 56px; }
   section { padding: 60px 0; }
@@ -263,6 +284,7 @@ footer a { color: var(--muted); }
       <a href="#features" data-i18n="nav.features">Боломжууд</a>
       <a href="#install" data-i18n="nav.install">Суулгах</a>
       <a href="https://github.com/kitelab-dev/kitedb">GitHub</a>
+      <a class="nav-donate" href="https://byl.mn/h/pay/eTdxkcjkQ69m" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21Z"/></svg><span data-i18n="nav.donate">Хандив</span></a>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang="mn" aria-pressed="true">MN</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -398,6 +420,19 @@ footer a { color: var(--muted); }
   </div>
 </section>
 
+<section id="support">
+  <div class="wrap">
+    <div class="support-card">
+      <div class="heart"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21Z"/></svg></div>
+      <div>
+        <h2 data-i18n="support.title">Kitelab DB-г дэмжээрэй</h2>
+        <p data-i18n="support.lead">Kitelab DB үнэгүй, нээлттэй эх кодтой хэвээр байна. Таны хандив шинэ боломжууд болон Linux хувилбарыг хөгжүүлэхэд зарцуулагдана.</p>
+      </div>
+      <a class="btn btn-donate" href="https://byl.mn/h/pay/eTdxkcjkQ69m" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21Z"/></svg><span data-i18n="support.button">Byl-ээр хандив өгөх</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="final">
   <div class="wrap">
     <h2 data-i18n="final.title">Database-тэйгээ ажиллахад бэлэн үү?</h2>
@@ -417,6 +452,7 @@ footer a { color: var(--muted); }
     <div class="links">
       <a href="https://github.com/kitelab-dev/kitedb">GitHub</a>
       <a href="https://github.com/kitelab-dev/kitedb/releases" data-i18n="footer.releases">Хувилбарууд</a>
+      <a href="https://byl.mn/h/pay/eTdxkcjkQ69m" target="_blank" rel="noopener" data-i18n="footer.donate">Хандив өгөх</a>
       <a href="https://github.com/kitelab-dev/kitedb/issues" data-i18n="footer.issues">Санал, алдаа</a>
       <a href="https://github.com/kitelab-dev/kitedb/blob/main/macos/THIRD_PARTY_NOTICES.md" data-i18n="footer.notices">Гуравдагч талын лиценз</a>
     </div>
@@ -428,6 +464,11 @@ const I18N = {
   en: {
     "nav.features": "Features",
     "nav.install": "Install",
+    "nav.donate": "Donate",
+    "support.title": "Support Kitelab DB",
+    "support.lead": "Kitelab DB stays free and open source. Donations fund new features and the upcoming Linux version.",
+    "support.button": "Donate via Byl",
+    "footer.donate": "Donate",
     "hero.badge": "Free · Open source · Native macOS",
     "hero.title": "A <span class=\"grad\">simple, fast</span> client for MySQL and PostgreSQL",
     "hero.lead": "Browse tables, edit data in place and run SQL — a database client that feels at home on your Mac, without the clutter.",
