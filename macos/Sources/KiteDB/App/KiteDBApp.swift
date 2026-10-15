@@ -2,11 +2,11 @@ import CMySQL
 import SwiftUI
 
 @main
-struct KitelabDBApp: App {
+struct KiteDBApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     var body: some Scene {
-        Window("Kitelab DB", id: WindowID.welcome) {
+        Window("KiteDB", id: WindowID.welcome) {
             WelcomeView()
                 .frame(minWidth: 700, minHeight: 420)
         }
@@ -53,7 +53,7 @@ struct AppCommands: Commands {
             .keyboardShortcut("k", modifiers: [.command, .shift])
         }
         CommandGroup(replacing: .help) {
-            Button("Kitelab DB Website") { openURL(AppLinks.website) }
+            Button("KiteDB Website") { openURL(AppLinks.website) }
             Button("Report an Issue…") { openURL(AppLinks.issues) }
             Divider()
             Button("Donate via Byl…") { openURL(AppLinks.donate) }

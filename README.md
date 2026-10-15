@@ -1,4 +1,4 @@
-# Kitelab DB
+# KiteDB
 
 A simple, native desktop client for MySQL and PostgreSQL — browse tables, edit data in place
 and run SQL. Free and open source (MIT).
@@ -11,11 +11,11 @@ MySQL болон PostgreSQL-д зориулсан, TablePlus-тэй төстэй
 
 | Platform | Status | Source | Download |
 | --- | --- | --- | --- |
-| macOS (Apple Silicon, 14+) | ✅ Available | [`macos/`](macos) | [KitelabDB.dmg](https://github.com/kitelab-dev/kitedb/releases/latest/download/KitelabDB.dmg) |
+| macOS (Apple Silicon, 14+) | ✅ Available | [`macos/`](macos) | [KiteDB.dmg](https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg) |
 | Linux | 🚧 Planned | — | — |
 
 > The macOS app is not notarized yet. On first launch open **System Settings → Privacy & Security → Open Anyway**,
-> or run `xattr -dr com.apple.quarantine "/Applications/Kitelab DB.app"`.
+> or run `xattr -dr com.apple.quarantine "/Applications/KiteDB.app"`.
 
 ## Repository layout
 

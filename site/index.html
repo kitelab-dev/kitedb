@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kitelab DB — MySQL & PostgreSQL client for macOS</title>
-<meta name="description" content="Kitelab DB: a simple, fast, native macOS client for MySQL and PostgreSQL. Free and open source.">
-<meta property="og:title" content="Kitelab DB">
+<title>KiteDB — MySQL & PostgreSQL client for macOS</title>
+<meta name="description" content="KiteDB: a simple, fast, native macOS client for MySQL and PostgreSQL. Free and open source.">
+<meta property="og:title" content="KiteDB">
 <meta property="og:description" content="A simple, native macOS client for MySQL and PostgreSQL. Free and open source.">
 <meta property="og:image" content="https://kitedb.dotly.mn/assets/table.png">
 <meta property="og:url" content="https://kitedb.dotly.mn">
@@ -279,7 +279,7 @@ footer a { color: var(--muted); }
 
 <nav>
   <div class="wrap">
-    <a class="brand" href="#"><img src="assets/icon.png" alt="">Kitelab DB</a>
+    <a class="brand" href="#"><img src="assets/icon.png" alt="">KiteDB</a>
     <div class="nav-links">
       <a href="#features" data-i18n="nav.features">Боломжууд</a>
       <a href="#install" data-i18n="nav.install">Суулгах</a>
@@ -295,12 +295,12 @@ footer a { color: var(--muted); }
 
 <header class="hero">
   <div class="wrap">
-    <img class="hero-icon" src="assets/icon.png" alt="Kitelab DB icon">
+    <img class="hero-icon" src="assets/icon.png" alt="KiteDB icon">
     <div class="eyebrow"><span class="dot"></span><span data-i18n="hero.badge">Үнэгүй · Нээлттэй эх · macOS native</span></div>
     <h1 data-i18n-html="hero.title">MySQL ба PostgreSQL-д зориулсан <span class="grad">энгийн, хурдан</span> клиент</h1>
     <p class="lead" data-i18n="hero.lead">Table-үүдээ үзэх, өгөгдлөө шууд засах, SQL ажиллуулах — илүүц зүйлгүй, Mac-д төрсөн мэт ажиллах database клиент.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KitelabDB.dmg">
+      <a class="btn btn-primary" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
         <span data-i18n="hero.download">macOS-д татах</span>
       </a>
@@ -401,22 +401,22 @@ footer a { color: var(--muted); }
     <div class="steps">
       <div class="step">
         <h3 data-i18n="s1.t">Татах</h3>
-        <p data-i18n-html="s1.d"><a href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KitelabDB.dmg">KitelabDB.dmg</a> файлыг татаж аваад нээнэ.</p>
+        <p data-i18n-html="s1.d"><a href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">KiteDB.dmg</a> файлыг татаж аваад нээнэ.</p>
       </div>
       <div class="step">
         <h3 data-i18n="s2.t">Applications руу чирэх</h3>
-        <p data-i18n="s2.d">Kitelab DB-г Applications хавтас руу чирж оруулна.</p>
+        <p data-i18n="s2.d">KiteDB-г Applications хавтас руу чирж оруулна.</p>
       </div>
       <div class="step">
         <h3 data-i18n="s3.t">Анх удаа нээх</h3>
         <p data-i18n-html="s3.d">Апп Apple-аар notarize хийгдээгүй тул анх нээхэд macOS анхааруулга өгнө. <b>System Settings → Privacy &amp; Security</b> хэсэгт <b>Open Anyway</b> дарна, эсвэл:</p>
         <div class="cmd">
-          <code id="xattr-cmd">xattr -dr com.apple.quarantine "/Applications/Kitelab DB.app"</code>
+          <code id="xattr-cmd">xattr -dr com.apple.quarantine "/Applications/KiteDB.app"</code>
           <button type="button" data-copy="xattr-cmd" data-i18n="copy">Хуулах</button>
         </div>
       </div>
     </div>
-    <p class="note" data-i18n-html="install.note">Kitelab DB нь бүрэн нээлттэй эх кодтой, release файлууд GitHub Actions дээр эх кодоос шууд build хийгддэг. SHA-256 хяналтын нийлбэрийг <a href="https://github.com/kitelab-dev/kitedb/releases/latest">release хуудаснаас</a> шалгаж болно.</p>
+    <p class="note" data-i18n-html="install.note">KiteDB нь бүрэн нээлттэй эх кодтой, release файлууд GitHub Actions дээр эх кодоос шууд build хийгддэг. SHA-256 хяналтын нийлбэрийг <a href="https://github.com/kitelab-dev/kitedb/releases/latest">release хуудаснаас</a> шалгаж болно.</p>
   </div>
 </section>
 
@@ -425,8 +425,8 @@ footer a { color: var(--muted); }
     <div class="support-card">
       <div class="heart"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21Z"/></svg></div>
       <div>
-        <h2 data-i18n="support.title">Kitelab DB-г дэмжээрэй</h2>
-        <p data-i18n="support.lead">Kitelab DB үнэгүй, нээлттэй эх кодтой хэвээр байна. Таны хандив шинэ боломжууд болон Linux хувилбарыг хөгжүүлэхэд зарцуулагдана.</p>
+        <h2 data-i18n="support.title">KiteDB-г дэмжээрэй</h2>
+        <p data-i18n="support.lead">KiteDB үнэгүй, нээлттэй эх кодтой хэвээр байна. Таны хандив шинэ боломжууд болон Linux хувилбарыг хөгжүүлэхэд зарцуулагдана.</p>
       </div>
       <a class="btn btn-donate" href="https://byl.mn/h/pay/eTdxkcjkQ69m" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21Z"/></svg><span data-i18n="support.button">Byl-ээр хандив өгөх</span></a>
     </div>
@@ -438,7 +438,7 @@ footer a { color: var(--muted); }
     <h2 data-i18n="final.title">Database-тэйгээ ажиллахад бэлэн үү?</h2>
     <p class="lead" data-i18n="final.lead">Үнэгүй, бүртгэлгүй, хязгааргүй.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KitelabDB.dmg">
+      <a class="btn btn-primary" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
         <span data-i18n="hero.download">macOS-д татах</span>
       </a>
@@ -465,8 +465,8 @@ const I18N = {
     "nav.features": "Features",
     "nav.install": "Install",
     "nav.donate": "Donate",
-    "support.title": "Support Kitelab DB",
-    "support.lead": "Kitelab DB stays free and open source. Donations fund new features and the upcoming Linux version.",
+    "support.title": "Support KiteDB",
+    "support.lead": "KiteDB stays free and open source. Donations fund new features and the upcoming Linux version.",
     "support.button": "Donate via Byl",
     "footer.donate": "Donate",
     "hero.badge": "Free · Open source · Native macOS",
@@ -499,14 +499,14 @@ const I18N = {
     "install.title": "Install",
     "install.lead": "Takes less than a minute.",
     "s1.t": "Download",
-    "s1.d": "Download <a href=\"https://github.com/kitelab-dev/kitedb/releases/latest/download/KitelabDB.dmg\">KitelabDB.dmg</a> and open it.",
+    "s1.d": "Download <a href=\"https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg\">KiteDB.dmg</a> and open it.",
     "s2.t": "Drag to Applications",
-    "s2.d": "Drag Kitelab DB into your Applications folder.",
+    "s2.d": "Drag KiteDB into your Applications folder.",
     "s3.t": "First launch",
     "s3.d": "The app is not notarized by Apple yet, so macOS blocks the first launch. Open <b>System Settings → Privacy &amp; Security</b> and click <b>Open Anyway</b>, or run:",
     "copy": "Copy",
     "copied": "Copied",
-    "install.note": "Kitelab DB is fully open source and release builds are produced from source on GitHub Actions. Verify the SHA-256 checksum on the <a href=\"https://github.com/kitelab-dev/kitedb/releases/latest\">release page</a>.",
+    "install.note": "KiteDB is fully open source and release builds are produced from source on GitHub Actions. Verify the SHA-256 checksum on the <a href=\"https://github.com/kitelab-dev/kitedb/releases/latest\">release page</a>.",
     "final.title": "Ready to work with your databases?",
     "final.lead": "Free. No account. No limits.",
     "footer.license": "MIT License",

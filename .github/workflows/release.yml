@@ -40,13 +40,13 @@ jobs:
           export VERSION="${TAG#v}"
           ./scripts/build-app.sh
           ./scripts/make-dmg.sh
-          plutil -p "build/Kitelab DB.app/Contents/Info.plist" | grep -E "Version|Minimum"
+          plutil -p "build/KiteDB.app/Contents/Info.plist" | grep -E "Version|Minimum"
 
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" --title "Kitelab DB ${TAG#v}" --notes-file ../.github/release-notes.md --generate-notes
+            gh release create "$TAG" --title "KiteDB ${TAG#v}" --notes-file ../.github/release-notes.md --generate-notes
           fi
-          gh release upload "$TAG" build/KitelabDB.dmg build/KitelabDB.dmg.sha256 --clobber
+          gh release upload "$TAG" build/KiteDB.dmg build/KiteDB.dmg.sha256 --clobber

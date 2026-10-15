@@ -1,4 +1,4 @@
-# Kitelab DB — macOS
+# KiteDB — macOS
 
 TablePlus-тэй төстэй, гэхдээ илүү энгийн macOS native MySQL / PostgreSQL клиент.
 SwiftUI + AppKit (NSTableView grid, NSTextView editor) дээр бичигдсэн бөгөөд
@@ -41,9 +41,9 @@ SwiftUI + AppKit (NSTableView grid, NSTextView editor) дээр бичигдсэ
 
 ```sh
 brew install libpq mysql     # аль хэдийн суусан бол алгас
-make app                     # build/Kitelab DB.app үүсгэнэ
+make app                     # build/KiteDB.app үүсгэнэ
 make run                     # build хийгээд нээнэ
-make dmg                     # build/KitelabDB.dmg
+make dmg                     # build/KiteDB.dmg
 ```
 
 `v*` tag push хийхэд repo-ийн root дахь `.github/workflows/release.yml` нь macOS 14 runner дээр build хийж,
@@ -67,7 +67,7 @@ KITELAB_MYSQL=127.0.0.1:3306:root: KITELAB_PG=127.0.0.1:5432:postgres:secret mak
 macos/
   Sources/
     CLibPQ, CMySQL/        C сангуудын module map
-    KitelabDB/
+    KiteDB/
       App/                 @main, цэс, товчлол
       Database/            DatabaseDriver protocol, MySQLDriver, PostgresDriver, DBSession (serial queue)
       Models/              холболт (JSON + Keychain), workspace, table/query tab-ын state

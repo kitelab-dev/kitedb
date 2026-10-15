@@ -1,5 +1,5 @@
 import XCTest
-@testable import KitelabDB
+@testable import KiteDB
 
 @MainActor
 final class TableTabModelTests: XCTestCase {

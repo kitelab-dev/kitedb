@@ -9,16 +9,16 @@ let libpq = env["LIBPQ_PREFIX"] ?? "/opt/homebrew/opt/libpq"
 let mysql = env["MYSQL_PREFIX"] ?? "/opt/homebrew/opt/mysql"
 
 let package = Package(
-    name: "KitelabDB",
+    name: "KiteDB",
     platforms: [.macOS(.v14)],
     products: [
-        .executable(name: "KitelabDB", targets: ["KitelabDB"]),
+        .executable(name: "KiteDB", targets: ["KiteDB"]),
     ],
     targets: [
         .systemLibrary(name: "CLibPQ", path: "Sources/CLibPQ"),
         .systemLibrary(name: "CMySQL", path: "Sources/CMySQL"),
         .executableTarget(
-            name: "KitelabDB",
+            name: "KiteDB",
             dependencies: ["CLibPQ", "CMySQL"],
             swiftSettings: [
                 .swiftLanguageMode(.v5),
@@ -36,8 +36,8 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "KitelabDBTests",
-            dependencies: ["KitelabDB"],
+            name: "KiteDBTests",
+            dependencies: ["KiteDB"],
             swiftSettings: [.swiftLanguageMode(.v5)]
         ),
     ]

@@ -9,7 +9,7 @@ dmg: app
 	./scripts/make-dmg.sh
 
 run: app
-	open "build/Kitelab DB.app"
+	open "build/KiteDB.app"
 
 # Integration tests; set KITELAB_MYSQL / KITELAB_PG=host:port:user:password
 test:

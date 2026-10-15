@@ -1,5 +1,5 @@
 import XCTest
-@testable import KitelabDB
+@testable import KiteDB
 
 /// Integration tests against live servers. Configure with environment
 /// variables; a test is skipped when its server variables are missing:

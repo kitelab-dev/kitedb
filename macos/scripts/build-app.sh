@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# Builds "build/Kitelab DB.app": a release binary plus the Homebrew client
+# Builds "build/KiteDB.app": a release binary plus the Homebrew client
 # libraries it links (libpq, libmysqlclient and their dependencies) copied
 # into Contents/Frameworks, so the app runs without Homebrew.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
-APP_NAME="Kitelab DB"
-EXECUTABLE="KitelabDB"
+APP_NAME="KiteDB"
+EXECUTABLE="KiteDB"
 APP="$ROOT/build/$APP_NAME.app"
 VERSION="${VERSION:-1.0}"
 
@@ -80,7 +80,7 @@ plutil -replace LSMinimumSystemVersion -string "$MIN_OS" "$APP/Contents/Info.pli
 # License texts of the bundled libraries.
 LICENSES="$APP/Contents/Resources/Licenses"
 mkdir -p "$LICENSES"
-cp ../LICENSE "$LICENSES/KitelabDB-LICENSE.txt"
+cp ../LICENSE "$LICENSES/KiteDB-LICENSE.txt"
 cp THIRD_PARTY_NOTICES.md "$LICENSES/"
 for formula in libpq mysql-client mysql openssl@3 krb5 zstd zlib-ng-compat zlib; do
     prefix="$(brew --prefix "$formula" 2>/dev/null)" || continue

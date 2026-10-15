@@ -36,7 +36,7 @@ final class PostgresDriver: DatabaseDriver {
             ("dbname", database),
             ("sslmode", config.sslMode.rawValue),
             ("connect_timeout", "10"),
-            ("application_name", "Kitelab DB"),
+            ("application_name", "KiteDB"),
         ]
         let keys = params.map { strdup($0.0) }
         let values = params.map { strdup($0.1) }

@@ -57,7 +57,7 @@ struct WelcomeView: View {
                 .resizable()
                 .frame(width: 96, height: 96)
             VStack(spacing: 4) {
-                Text("Kitelab DB")
+                Text("KiteDB")
                     .font(.title2.weight(.semibold))
                 Text("MySQL & PostgreSQL client")
                     .font(.callout)
@@ -73,7 +73,7 @@ struct WelcomeView: View {
             .controlSize(.large)
             .keyboardShortcut("n")
             Link(destination: AppLinks.donate) {
-                Label("Support Kitelab DB", systemImage: "heart.fill")
+                Label("Support KiteDB", systemImage: "heart.fill")
                     .font(.callout)
             }
             .tint(.pink)

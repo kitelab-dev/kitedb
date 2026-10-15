@@ -1,8 +1,8 @@
 # Third-party notices
 
-The macOS app bundle (`Kitelab DB.app/Contents/Frameworks`) ships the following
+The macOS app bundle (`KiteDB.app/Contents/Frameworks`) ships the following
 libraries unmodified, as built by Homebrew. Their license texts are copied to
-`Kitelab DB.app/Contents/Resources/Licenses` at build time.
+`KiteDB.app/Contents/Resources/Licenses` at build time.
 
 | Library | License | Source |
 | --- | --- | --- |

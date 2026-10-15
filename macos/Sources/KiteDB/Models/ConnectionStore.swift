@@ -14,6 +14,7 @@ final class ConnectionStore {
     private let fileURL: URL
 
     private init() {
+        // The folder keeps the pre-rename name so existing connections survive.
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("KitelabDB", isDirectory: true)
         try? FileManager.default.createDirectory(at: base, withIntermediateDirectories: true)
@@ -90,7 +91,7 @@ enum Keychain {
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
             kSecAttrAccount as String: id.uuidString,
-            kSecAttrLabel as String: "Kitelab DB connection",
+            kSecAttrLabel as String: "KiteDB connection",
             kSecValueData as String: Data(password.utf8),
         ]
         SecItemAdd(item as CFDictionary, nil)
