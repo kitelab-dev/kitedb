@@ -61,7 +61,7 @@ make dmg                     # build/KitelabDB.dmg
 `.dmg`-г GitHub Release-д хавсаргана (macOS 14 bottle ашигладаг тул апп macOS 14+ дээр ажиллана;
 локал build нь таны macOS-ийн Homebrew сангуудаас хамаарч илүү өндөр хувилбар шаардаж болно).
 
-Landing page: `site/` (статик, Cloudflare Pages дээр байршина).
+Landing page: `site/` — `wrangler.jsonc`-оор Cloudflare Workers static assets болон `kitedb.dotly.mn` дээр байршина (main руу push хийхэд Workers Builds автоматаар deploy хийнэ).
 
 `scripts/build-app.sh` нь release binary-г `.app` болгож, libpq / libmysqlclient болон
 тэдгээрийн хамаарлуудыг (OpenSSL, krb5, zstd, zlib) `Contents/Frameworks` руу хуулж,
