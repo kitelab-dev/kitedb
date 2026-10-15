@@ -22,7 +22,7 @@ jobs:
       MYSQL_PREFIX: /opt/homebrew/opt/mysql-client
       LIBPQ_PREFIX: /opt/homebrew/opt/libpq
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Select Xcode 16
         run: |
