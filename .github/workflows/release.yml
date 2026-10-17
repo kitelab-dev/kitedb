@@ -50,3 +50,42 @@ jobs:
             gh release create "$TAG" --title "KiteDB ${TAG#v}" --notes-file ../.github/release-notes.md --generate-notes
           fi
           gh release upload "$TAG" build/KiteDB.dmg build/KiteDB.dmg.sha256 --clobber
+
+  linux:
+    # Runs after the macOS job, which creates the GitHub release.
+    needs: build
+    # Ubuntu 24.04 ships GTK 4.14 and libadwaita 1.5, the oldest versions the
+    # app targets, so the binary runs on 24.04-era distributions and newer.
+    runs-on: ubuntu-24.04
+    env:
+      TAG: ${{ inputs.tag || github.ref_name }}
+    defaults:
+      run:
+        working-directory: linux
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install GTK 4 and libadwaita
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libgtk-4-dev libadwaita-1-dev
+
+      - name: Install Rust
+        run: |
+          rustup toolchain install stable --profile minimal --component clippy,rustfmt
+          rustup default stable
+          cargo --version
+
+      - name: Lint and unit tests
+        run: |
+          cargo fmt --check
+          cargo clippy --all-targets --locked -- -D warnings
+          cargo test --lib --locked
+
+      - name: Build package
+        run: VERSION="${TAG#v}" ./scripts/package.sh
+
+      - name: Upload to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$TAG" build/KiteDB-linux-x86_64.tar.gz build/KiteDB-linux-x86_64.tar.gz.sha256 --clobber

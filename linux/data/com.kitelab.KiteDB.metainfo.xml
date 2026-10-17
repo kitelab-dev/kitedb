@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.kitelab.KiteDB</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>KiteDB</name>
+  <summary>A simple, native client for MySQL and PostgreSQL</summary>
+  <description>
+    <p>Browse tables, edit data in place and run SQL against MySQL, MariaDB and PostgreSQL servers.</p>
+    <ul>
+      <li>Saved connections with passwords kept in the system keyring</li>
+      <li>Paged data grid with sorting, filters, inline editing and CSV export</li>
+      <li>Staged edits saved in one transaction</li>
+      <li>SQL editor with highlighting, completion and query cancelling</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">com.kitelab.KiteDB.desktop</launchable>
+  <url type="homepage">https://kitedb.dotly.mn</url>
+  <url type="bugtracker">https://github.com/kitelab-dev/kitedb/issues</url>
+  <url type="donation">https://byl.mn/h/pay/eTdxkcjkQ69m</url>
+  <developer id="dev.kitelab">
+    <name>Kitelab</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="1.0.0" date="2026-10-17"/>
+  </releases>
+</component>

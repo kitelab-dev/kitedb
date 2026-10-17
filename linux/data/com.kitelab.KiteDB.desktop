@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=KiteDB
+GenericName=Database Client
+Comment=Browse, edit and query MySQL and PostgreSQL databases
+Exec=kitedb
+Icon=com.kitelab.KiteDB
+Terminal=false
+Categories=Development;Database;GTK;
+Keywords=sql;mysql;mariadb;postgres;postgresql;database;
+StartupNotify=true
