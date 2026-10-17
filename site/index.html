@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KiteDB — MySQL & PostgreSQL client for macOS</title>
-<meta name="description" content="KiteDB: a simple, fast, native macOS client for MySQL and PostgreSQL. Free and open source.">
+<title>KiteDB — MySQL & PostgreSQL client for macOS and Linux</title>
+<meta name="description" content="KiteDB: a simple, fast, native client for MySQL and PostgreSQL on macOS and Linux. Free and open source.">
 <meta property="og:title" content="KiteDB">
-<meta property="og:description" content="A simple, native macOS client for MySQL and PostgreSQL. Free and open source.">
+<meta property="og:description" content="A simple, native MySQL and PostgreSQL client for macOS and Linux. Free and open source.">
 <meta property="og:image" content="https://kitedb.dotly.mn/assets/table.png">
 <meta property="og:url" content="https://kitedb.dotly.mn">
 <meta name="twitter:card" content="summary_large_image">
@@ -177,6 +177,8 @@ h1 .grad {
   padding: 8px 16px; border-radius: 999px; font: 500 14px inherit; cursor: pointer;
 }
 .shot-tabs button[aria-selected="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.os-tabs { margin: -12px 0 36px; }
+[data-os-panel][hidden] { display: none; }
 
 /* Sections */
 section { padding: 80px 0; }
@@ -206,8 +208,9 @@ kbd {
 }
 
 .install { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; counter-reset: step; }
-.step { position: relative; padding-top: 54px; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; counter-reset: step; }
+/* min-width: 0 lets a long command scroll inside its box instead of widening the column. */
+.step { position: relative; padding-top: 54px; min-width: 0; }
 .step::before {
   counter-increment: step; content: counter(step);
   position: absolute; top: 0; left: 0; width: 38px; height: 38px; border-radius: 50%;
@@ -258,7 +261,7 @@ footer a { color: var(--muted); }
   .support-card { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 28px 22px; }
   .features { grid-template-columns: repeat(2, 1fr); }
   .shortcuts { grid-template-columns: repeat(2, 1fr); }
-  .steps { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: minmax(0, 1fr); }
   .app-body { grid-template-columns: 1fr; }
   .sidebar { display: none; }
   .conn { margin-left: 0; }
@@ -296,20 +299,24 @@ footer a { color: var(--muted); }
 <header class="hero">
   <div class="wrap">
     <img class="hero-icon" src="assets/icon.png" alt="KiteDB icon">
-    <div class="eyebrow"><span class="dot"></span><span data-i18n="hero.badge">Үнэгүй · Нээлттэй эх · macOS native</span></div>
+    <div class="eyebrow"><span class="dot"></span><span data-i18n="hero.badge">Үнэгүй · Нээлттэй эх · macOS ба Linux native</span></div>
     <h1 data-i18n-html="hero.title">MySQL ба PostgreSQL-д зориулсан <span class="grad">энгийн, хурдан</span> клиент</h1>
-    <p class="lead" data-i18n="hero.lead">Table-үүдээ үзэх, өгөгдлөө шууд засах, SQL ажиллуулах — илүүц зүйлгүй, Mac-д төрсөн мэт ажиллах database клиент.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">
+    <p class="lead" data-i18n="hero.lead">Table-үүдээ үзэх, өгөгдлөө шууд засах, SQL ажиллуулах — илүүц зүйлгүй, Mac болон Linux дээр жинхэнэ native ажиллах database клиент.</p>
+    <div class="cta" data-downloads>
+      <a class="btn btn-primary" data-os="mac" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
         <span data-i18n="hero.download">macOS-д татах</span>
+      </a>
+      <a class="btn btn-secondary" data-os="linux" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB-linux-x86_64.tar.gz">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
+        <span data-i18n="hero.download.linux">Linux-д татах</span>
       </a>
       <a class="btn btn-secondary" href="https://github.com/kitelab-dev/kitedb">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
         <span data-i18n="hero.source">Эх код</span>
       </a>
     </div>
-    <p class="meta"><span id="version">v1.0.0</span> · <span data-i18n="hero.req">Apple Silicon (M1+) · macOS 14 Sonoma ба түүнээс хойш</span></p>
+    <p class="meta"><span id="version">v1.0.0</span> · <span data-i18n="hero.req">macOS 14+ (Apple Silicon) · Linux x86_64 (GTK 4.14+)</span></p>
   </div>
 </header>
 
@@ -354,11 +361,11 @@ footer a { color: var(--muted); }
       <div class="card">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></div>
         <h3 data-i18n="f1.t">Native бөгөөд хурдан</h3>
-        <p data-i18n="f1.d">SwiftUI + AppKit дээр бичигдсэн. Албан ёсны libpq, libmysqlclient сангаар шууд холбогдоно — Electron биш.</p>
+        <p data-i18n="f1.d">macOS дээр SwiftUI + AppKit, Linux дээр Rust + GTK 4 / libadwaita. Electron биш — систем бүрийн өөрийн UI-г ашиглана.</p>
       </div>
       <div class="card">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
-        <h3 data-i18n="f2.t">Шууд засаад ⌘S</h3>
+        <h3 data-i18n="f2.t">Шууд засаад хадгална</h3>
         <p data-i18n="f2.d">Нүдийг double-click хийж засах, мөр нэмэх, устгах. Өөрчлөлтүүд тэмдэглэгдэж, нэг transaction-д хадгалагдана.</p>
       </div>
       <div class="card">
@@ -369,7 +376,7 @@ footer a { color: var(--muted); }
       <div class="card">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></div>
         <h3 data-i18n="f4.t">SQL editor</h3>
-        <p data-i18n="f4.d">Өнгөт тодруулга, автоматаар гүйцээх, олон statement. ⌘↩ дарж ажиллуулна, сонгосон хэсгийг ч ажиллуулж болно.</p>
+        <p data-i18n="f4.d">Өнгөт тодруулга, автоматаар гүйцээх, олон statement. ⌘↩ (Linux дээр Ctrl+Enter) дарж ажиллуулна, сонгосон хэсгийг ч ажиллуулж болно.</p>
       </div>
       <div class="card">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
@@ -379,15 +386,15 @@ footer a { color: var(--muted); }
       <div class="card">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
         <h3 data-i18n="f6.t">Аюулгүй, нээлттэй</h3>
-        <p data-i18n="f6.d">Нууц үг macOS Keychain-д хадгалагдана. Ямар нэг telemetry байхгүй. MIT лицензтэй нээлттэй эх.</p>
+        <p data-i18n="f6.d">Нууц үг macOS Keychain эсвэл Linux-ийн системийн keyring-д хадгалагдана. Ямар нэг telemetry байхгүй. MIT лицензтэй нээлттэй эх.</p>
       </div>
     </div>
 
     <div class="shortcuts">
-      <div class="kbd-item"><span data-i18n="k.run">Query ажиллуулах</span><kbd>⌘ ↩</kbd></div>
-      <div class="kbd-item"><span data-i18n="k.save">Өөрчлөлт хадгалах</span><kbd>⌘ S</kbd></div>
-      <div class="kbd-item"><span data-i18n="k.tab">Шинэ query tab</span><kbd>⌘ T</kbd></div>
-      <div class="kbd-item"><span data-i18n="k.row">Мөр нэмэх</span><kbd>⌘ I</kbd></div>
+      <div class="kbd-item"><span data-i18n="k.run">Query ажиллуулах</span><kbd data-linux="Ctrl ↩">⌘ ↩</kbd></div>
+      <div class="kbd-item"><span data-i18n="k.save">Өөрчлөлт хадгалах</span><kbd data-linux="Ctrl S">⌘ S</kbd></div>
+      <div class="kbd-item"><span data-i18n="k.tab">Шинэ query tab</span><kbd data-linux="Ctrl T">⌘ T</kbd></div>
+      <div class="kbd-item"><span data-i18n="k.row">Мөр нэмэх</span><kbd data-linux="Ctrl I">⌘ I</kbd></div>
     </div>
   </div>
 </section>
@@ -398,7 +405,11 @@ footer a { color: var(--muted); }
       <h2 data-i18n="install.title">Суулгах</h2>
       <p data-i18n="install.lead">Нэг минут хүрэхгүй хугацаа.</p>
     </div>
-    <div class="steps">
+    <div class="shot-tabs os-tabs" role="tablist">
+      <button type="button" role="tab" aria-selected="true" data-os-tab="mac">macOS</button>
+      <button type="button" role="tab" aria-selected="false" data-os-tab="linux">Linux</button>
+    </div>
+    <div class="steps" data-os-panel="mac">
       <div class="step">
         <h3 data-i18n="s1.t">Татах</h3>
         <p data-i18n-html="s1.d"><a href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">KiteDB.dmg</a> файлыг татаж аваад нээнэ.</p>
@@ -416,6 +427,24 @@ footer a { color: var(--muted); }
         </div>
       </div>
     </div>
+    <div class="steps" data-os-panel="linux" hidden>
+      <div class="step">
+        <h3 data-i18n="l1.t">Татах</h3>
+        <p data-i18n-html="l1.d"><a href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB-linux-x86_64.tar.gz">KiteDB-linux-x86_64.tar.gz</a> архивыг татна.</p>
+      </div>
+      <div class="step">
+        <h3 data-i18n="l2.t">Суулгах</h3>
+        <p data-i18n-html="l2.d">Архивыг задлаад <code>install.sh</code> ажиллуулна. Таны <code>~/.local</code> руу суулгаж, desktop дээр shortcut нэмнэ:</p>
+        <div class="cmd">
+          <code id="linux-cmd">tar -xzf KiteDB-linux-x86_64.tar.gz &amp;&amp; ./KiteDB-linux-x86_64/install.sh --desktop-shortcut</code>
+          <button type="button" data-copy="linux-cmd" data-i18n="copy">Хуулах</button>
+        </div>
+      </div>
+      <div class="step">
+        <h3 data-i18n="l3.t">Нээх</h3>
+        <p data-i18n="l3.d">KiteDB нь апп цэсний Development хэсэгт болон desktop дээр гарч ирнэ. GTK 4.14+ ба libadwaita 1.5+ шаардлагатай: Ubuntu 24.04, Fedora 40, Debian 13, Arch болон түүнээс шинэ.</p>
+      </div>
+    </div>
     <p class="note" data-i18n-html="install.note">KiteDB нь бүрэн нээлттэй эх кодтой, release файлууд GitHub Actions дээр эх кодоос шууд build хийгддэг. SHA-256 хяналтын нийлбэрийг <a href="https://github.com/kitelab-dev/kitedb/releases/latest">release хуудаснаас</a> шалгаж болно.</p>
   </div>
 </section>
@@ -426,7 +455,7 @@ footer a { color: var(--muted); }
       <div class="heart"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21Z"/></svg></div>
       <div>
         <h2 data-i18n="support.title">KiteDB-г дэмжээрэй</h2>
-        <p data-i18n="support.lead">KiteDB үнэгүй, нээлттэй эх кодтой хэвээр байна. Таны хандив шинэ боломжууд болон Linux хувилбарыг хөгжүүлэхэд зарцуулагдана.</p>
+        <p data-i18n="support.lead">KiteDB үнэгүй, нээлттэй эх кодтой хэвээр байна. Таны хандив шинэ боломжууд болон цаашдын хөгжүүлэлтэд зарцуулагдана.</p>
       </div>
       <a class="btn btn-donate" href="https://byl.mn/h/pay/eTdxkcjkQ69m" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21Z"/></svg><span data-i18n="support.button">Byl-ээр хандив өгөх</span></a>
     </div>
@@ -437,10 +466,14 @@ footer a { color: var(--muted); }
   <div class="wrap">
     <h2 data-i18n="final.title">Database-тэйгээ ажиллахад бэлэн үү?</h2>
     <p class="lead" data-i18n="final.lead">Үнэгүй, бүртгэлгүй, хязгааргүй.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">
+    <div class="cta" data-downloads>
+      <a class="btn btn-primary" data-os="mac" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
         <span data-i18n="hero.download">macOS-д татах</span>
+      </a>
+      <a class="btn btn-secondary" data-os="linux" href="https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB-linux-x86_64.tar.gz">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
+        <span data-i18n="hero.download.linux">Linux-д татах</span>
       </a>
     </div>
   </div>
@@ -454,7 +487,7 @@ footer a { color: var(--muted); }
       <a href="https://github.com/kitelab-dev/kitedb/releases" data-i18n="footer.releases">Хувилбарууд</a>
       <a href="https://byl.mn/h/pay/eTdxkcjkQ69m" target="_blank" rel="noopener" data-i18n="footer.donate">Хандив өгөх</a>
       <a href="https://github.com/kitelab-dev/kitedb/issues" data-i18n="footer.issues">Санал, алдаа</a>
-      <a href="https://github.com/kitelab-dev/kitedb/blob/main/macos/THIRD_PARTY_NOTICES.md" data-i18n="footer.notices">Гуравдагч талын лиценз</a>
+      <a href="https://github.com/kitelab-dev/kitedb#license" data-i18n="footer.notices">Гуравдагч талын лиценз</a>
     </div>
   </div>
 </footer>
@@ -466,32 +499,33 @@ const I18N = {
     "nav.install": "Install",
     "nav.donate": "Donate",
     "support.title": "Support KiteDB",
-    "support.lead": "KiteDB stays free and open source. Donations fund new features and the upcoming Linux version.",
+    "support.lead": "KiteDB stays free and open source. Donations fund new features and further development.",
     "support.button": "Donate via Byl",
     "footer.donate": "Donate",
-    "hero.badge": "Free · Open source · Native macOS",
+    "hero.badge": "Free · Open source · Native on macOS and Linux",
     "hero.title": "A <span class=\"grad\">simple, fast</span> client for MySQL and PostgreSQL",
-    "hero.lead": "Browse tables, edit data in place and run SQL — a database client that feels at home on your Mac, without the clutter.",
+    "hero.lead": "Browse tables, edit data in place and run SQL — a database client that feels at home on your Mac or Linux desktop, without the clutter.",
     "hero.download": "Download for macOS",
+    "hero.download.linux": "Download for Linux",
     "hero.source": "Source code",
-    "hero.req": "Apple Silicon (M1+) · macOS 14 Sonoma or later",
+    "hero.req": "macOS 14+ (Apple Silicon) · Linux x86_64 (GTK 4.14+)",
     "shot.data": "Edit data",
     "shot.query": "SQL editor",
     "shot.structure": "Structure",
     "features.title": "Everything you need, nothing you don't",
     "features.lead": "Focused on the things you do with a database every day.",
     "f1.t": "Native and fast",
-    "f1.d": "Built with SwiftUI and AppKit. Talks to servers through the official libpq and libmysqlclient — not Electron.",
-    "f2.t": "Edit, then ⌘S",
+    "f1.d": "SwiftUI and AppKit on macOS, Rust with GTK 4 and libadwaita on Linux. Not Electron — each app uses its platform's own UI.",
+    "f2.t": "Edit in place, save once",
     "f2.d": "Double-click a cell to edit, add or delete rows. Changes are highlighted and committed in a single transaction.",
     "f3.t": "Filter and sort",
     "f3.d": "Column + operator + value, or write a raw WHERE clause. Click a header to sort and page through results.",
     "f4.t": "SQL editor",
-    "f4.d": "Syntax highlighting, completion and multiple statements. Run with ⌘↩ — or run just the selection.",
+    "f4.d": "Syntax highlighting, completion and multiple statements. Run with ⌘↩ (Ctrl+Enter on Linux) — or run just the selection.",
     "f5.t": "MySQL & PostgreSQL",
     "f5.d": "Switch databases and schemas, browse tables and views, inspect columns and indexes. SSL supported.",
     "f6.t": "Private and open",
-    "f6.d": "Passwords live in the macOS Keychain. No telemetry. Open source under the MIT license.",
+    "f6.d": "Passwords live in the macOS Keychain or your Linux keyring. No telemetry. Open source under the MIT license.",
     "k.run": "Run query",
     "k.save": "Save changes",
     "k.tab": "New query tab",
@@ -504,6 +538,12 @@ const I18N = {
     "s2.d": "Drag KiteDB into your Applications folder.",
     "s3.t": "First launch",
     "s3.d": "The app is not notarized by Apple yet, so macOS blocks the first launch. Open <b>System Settings → Privacy &amp; Security</b> and click <b>Open Anyway</b>, or run:",
+    "l1.t": "Download",
+    "l1.d": "Download <a href=\"https://github.com/kitelab-dev/kitedb/releases/latest/download/KiteDB-linux-x86_64.tar.gz\">KiteDB-linux-x86_64.tar.gz</a>.",
+    "l2.t": "Install",
+    "l2.d": "Extract it and run <code>install.sh</code>. It installs into your <code>~/.local</code> and adds a desktop shortcut:",
+    "l3.t": "Open",
+    "l3.d": "KiteDB shows up in your app menu under Development and on your desktop. Needs GTK 4.14+ and libadwaita 1.5+: Ubuntu 24.04, Fedora 40, Debian 13, Arch or newer.",
     "copy": "Copy",
     "copied": "Copied",
     "install.note": "KiteDB is fully open source and release builds are produced from source on GitHub Actions. Verify the SHA-256 checksum on the <a href=\"https://github.com/kitelab-dev/kitedb/releases/latest\">release page</a>.",
@@ -542,6 +582,25 @@ try { saved = localStorage.getItem("kitedb-lang"); } catch (e) {}
 const preferred = new URLSearchParams(location.search).get("lang") || saved ||
   ((navigator.language || "").toLowerCase().startsWith("mn") ? "mn" : null);
 if (preferred && preferred !== "mn") setLang(preferred);
+
+// Linux visitors get the Linux download first, Ctrl shortcuts and Linux install steps.
+const isLinux = /Linux/.test(navigator.userAgent) && !/Android/.test(navigator.userAgent);
+function showOS(os) {
+  document.querySelectorAll("[data-os-tab]").forEach(t => t.setAttribute("aria-selected", String(t.dataset.osTab === os)));
+  document.querySelectorAll("[data-os-panel]").forEach(p => { p.hidden = p.dataset.osPanel !== os; });
+}
+document.querySelectorAll("[data-os-tab]").forEach(t => t.addEventListener("click", () => showOS(t.dataset.osTab)));
+if (isLinux) {
+  showOS("linux");
+  document.querySelectorAll("[data-downloads]").forEach(cta => {
+    const mac = cta.querySelector('[data-os="mac"]');
+    const linux = cta.querySelector('[data-os="linux"]');
+    mac.classList.replace("btn-primary", "btn-secondary");
+    linux.classList.replace("btn-secondary", "btn-primary");
+    cta.insertBefore(linux, mac);
+  });
+  document.querySelectorAll("kbd[data-linux]").forEach(k => { k.textContent = k.dataset.linux; });
+}
 
 // Screenshot switcher.
 document.querySelectorAll("[data-tab]").forEach(tab => tab.addEventListener("click", () => {
