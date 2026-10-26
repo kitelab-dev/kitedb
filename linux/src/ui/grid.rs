@@ -8,6 +8,8 @@ use std::rc::{Rc, Weak};
 use gtk::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
+use super::widgets::{detach_on_unrealize, popup_at};
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum RowState {
     Normal,
@@ -133,7 +135,6 @@ impl DataGrid {
         view.set_reorderable(false);
         let scroller = gtk::ScrolledWindow::builder().child(&view).hexpand(true).vexpand(true).build();
         let menu = gtk::PopoverMenu::from_model(None::<&gio::MenuModel>);
-        menu.set_parent(&view);
         menu.set_has_arrow(false);
         menu.set_halign(gtk::Align::Start);
         let actions = gio::SimpleActionGroup::new();
@@ -307,9 +308,7 @@ impl Inner {
             });
         }
 
-        let view = this.view.clone();
-        let menu = this.menu.clone();
-        view.connect_destroy(move |_| menu.unparent());
+        detach_on_unrealize(&this.menu, &this.view);
         Self::install_actions(this);
     }
 
@@ -710,7 +709,6 @@ impl Inner {
         let point = widget
             .compute_point(&this.view, &graphene::Point::new(x as f32, y as f32))
             .unwrap_or_else(|| graphene::Point::new(0.0, 0.0));
-        this.menu.set_pointing_to(Some(&gdk::Rectangle::new(point.x() as i32, point.y() as i32, 1, 1)));
-        this.menu.popup();
+        popup_at(&this.menu, &this.view, point.x() as i32, point.y() as i32);
     }
 }

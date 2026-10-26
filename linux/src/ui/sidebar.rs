@@ -4,6 +4,7 @@ use std::rc::{Rc, Weak};
 use adw::prelude::*;
 use gtk::{gdk, gio};
 
+use super::widgets::{detach_on_unrealize, popup_at};
 use super::workspace::Workspace;
 use crate::db::{TableKind, TableRef};
 use crate::models::connection::DatabaseKind;
@@ -89,7 +90,6 @@ impl Sidebar {
         let menu = gtk::PopoverMenu::from_model(None::<&gio::MenuModel>);
         menu.set_has_arrow(false);
         menu.set_halign(gtk::Align::Start);
-        menu.set_parent(&list);
 
         let sidebar = Rc::new(Self {
             root,
@@ -185,9 +185,7 @@ impl Sidebar {
         add("drop", |workspace, table| Workspace::confirm_destructive(workspace, table, true));
         this.list.insert_action_group("sidebar", Some(&actions));
 
-        let list = this.list.clone();
-        let menu = this.menu.clone();
-        list.connect_destroy(move |_| menu.unparent());
+        detach_on_unrealize(&this.menu, &this.list);
     }
 
     fn table_for(&self, row: &gtk::ListBoxRow) -> Option<TableRef> {
@@ -209,8 +207,7 @@ impl Sidebar {
         menu.append_section(None, &danger);
         *self.menu_target.borrow_mut() = Some(table);
         self.menu.set_menu_model(Some(&menu));
-        self.menu.set_pointing_to(Some(&gdk::Rectangle::new(x as i32, y as i32, 1, 1)));
-        self.menu.popup();
+        popup_at(&self.menu, &self.list, x as i32, y as i32);
     }
 
     pub fn update(&self, content: SidebarContent) {
