@@ -10,6 +10,8 @@ use adw::prelude::*;
 use gtk::{gdk, glib};
 use regex::Regex;
 
+use super::widgets::{detach_on_unrealize, popup_at};
+
 pub const KEYWORDS: &str = "select from where and or not in is null like ilike between exists as on join left right \
     inner outer full cross natural using group by order asc desc having limit offset distinct union all intersect \
     except insert into values update set delete returning create table view index unique primary key foreign \
@@ -94,7 +96,6 @@ impl SqlEditor {
         let popover = gtk::Popover::builder().child(&list_scroller).has_arrow(false).build();
         popover.set_position(gtk::PositionType::Bottom);
         popover.set_halign(gtk::Align::Start);
-        popover.set_parent(&view);
 
         let inner = Rc::new(Inner {
             scroller,
@@ -189,9 +190,7 @@ impl Inner {
             }
         });
 
-        let view = this.view.clone();
-        let popover = this.popover.clone();
-        view.connect_destroy(move |_| popover.unparent());
+        detach_on_unrealize(&this.popover, &this.view);
     }
 
     fn apply_colors(&self) {
@@ -343,8 +342,7 @@ impl Inner {
                     location.x(),
                     location.y() + location.height(),
                 );
-                self.popover.set_pointing_to(Some(&gdk::Rectangle::new(x, y, 1, 1)));
-                self.popover.popup();
+                popup_at(&self.popover, &self.view, x, y);
                 if let Some(row) = self.list.row_at_index(0) {
                     row.grab_focus();
                 }

@@ -161,6 +161,29 @@ pub fn open_uri(parent: Option<&impl IsA<gtk::Window>>, uri: &str) {
     launcher.launch(parent, gio::Cancellable::NONE, |_| {});
 }
 
+/// Shows `popover` pointing at `x`, `y` in `parent`. A popover is attached to
+/// its parent only from its first popup until the parent is unrealized (see
+/// `detach_on_unrealize`): GtkTextView and GtkListBox loop forever in dispose
+/// on a child they did not add, which hung the app when a window closed.
+pub fn popup_at(popover: &impl IsA<gtk::Popover>, parent: &impl IsA<gtk::Widget>, x: i32, y: i32) {
+    let popover = popover.upcast_ref::<gtk::Popover>();
+    if popover.parent().is_none() {
+        popover.set_parent(parent);
+    }
+    popover.set_pointing_to(Some(&gdk::Rectangle::new(x, y, 1, 1)));
+    popover.popup();
+}
+
+/// Detaches a popover shown with `popup_at` once `parent` leaves the screen.
+pub fn detach_on_unrealize(popover: &impl IsA<gtk::Popover>, parent: &impl IsA<gtk::Widget>) {
+    let popover = popover.clone().upcast::<gtk::Popover>();
+    parent.connect_unrealize(move |_| {
+        if popover.parent().is_some() {
+            popover.unparent();
+        }
+    });
+}
+
 fn csv_escape(value: &str) -> String {
     if value.contains([',', '"', '\n', '\r']) {
         format!("\"{}\"", value.replace('"', "\"\""))

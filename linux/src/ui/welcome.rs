@@ -7,7 +7,7 @@ use adw::prelude::*;
 use gtk::{gdk, gio, glib};
 use uuid::Uuid;
 
-use super::widgets::{DONATE, VERSION, app_icon, color_dot, kind_badge, open_uri};
+use super::widgets::{DONATE, VERSION, app_icon, color_dot, detach_on_unrealize, kind_badge, open_uri, popup_at};
 use super::{App, connection_form};
 use crate::models::connection::ConnectionConfig;
 
@@ -122,7 +122,6 @@ impl Welcome {
         let menu = gtk::PopoverMenu::from_model(None::<&gio::MenuModel>);
         menu.set_has_arrow(false);
         menu.set_halign(gtk::Align::Start);
-        menu.set_parent(&list);
 
         let welcome = Rc::new(Self {
             app: Rc::downgrade(app),
@@ -171,14 +170,11 @@ impl Welcome {
             welcome.list.select_row(Some(&row));
             *welcome.menu_target.borrow_mut() = Some(id);
             welcome.menu.set_menu_model(Some(&row_menu()));
-            welcome.menu.set_pointing_to(Some(&gdk::Rectangle::new(x as i32, y as i32, 1, 1)));
-            welcome.menu.popup();
+            popup_at(&welcome.menu, &welcome.list, x as i32, y as i32);
         });
         this.list.add_controller(click);
 
-        let list = this.list.clone();
-        let menu = this.menu.clone();
-        list.connect_destroy(move |_| menu.unparent());
+        detach_on_unrealize(&this.menu, &this.list);
 
         // Window actions; row actions work on the right-clicked or selected row.
         let add = |name: &str, handler: fn(&Rc<Welcome>, Option<Uuid>)| {
